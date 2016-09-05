@@ -33,7 +33,7 @@ int main(){
 	}	
 	average /= alocNum;
 
-	printf("%lli %d %lli\n", alocNum, vars[0], average);
+	printf("%lli %lli\n", alocNum, average);
 
 	free(vars);
 
