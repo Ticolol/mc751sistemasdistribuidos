@@ -13,8 +13,8 @@ run:
 	@gcc -lm -lrt process.c -o process
 	@echo 'Start execution'
 	@echo -n 'seq:     result = ' && time --format='   time = %e seconds' ./seq 64
-	@echo -n 'thread:  result = ' && time --format='   time = %e seconds' ./thread 64 8
-	@echo -n 'process: result = ' && time --format='   time = %e seconds' ./process 64 8
+	@echo -n 'thread:  result = ' && time --format='   time = %e seconds' ./thread 64 4
+	@echo -n 'process: result = ' && time --format='   time = %e seconds' ./process 64 4
 	@echo 'Finished!'
 
 
