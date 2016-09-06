@@ -19,29 +19,41 @@ typedef struct {
 void *GetAverage(void *info){
 	long long int i, start, end, localSum;
 	ThreadInfo *ti = (ThreadInfo *)info;
-//	printf("Started thread %d\n", );
+	//printf("Thread %d: starting\n", ti->ik);
 
 	//Calculate start and end of array domain
 	start = (ti->alocNum/ti->K)*ti->ik;	
 	end = (ti->alocNum/ti->K)*(ti->ik+1);	
 
 	//Apply values to vars
+	float percentage = 0;
 	for(i=start; i<end; i++){
-		ti->vars[i] = 1 + rand() % 1000;		
+		ti->vars[i] = 1 + rand() % 1000;
+		/*if(percentage < 0.25 && (float)((float)(i-start)/(end-start)) >= .25){
+			percentage = 0.25;
+			printf("Thread %d: random values: 25%\n", ti->ik);			
+		}
+		if(percentage < 0.5 && (float)((float)(i-start)/(end-start)) >= .5){
+			percentage = 0.5;
+			printf("Thread %d: random values: 50%\n", ti->ik);			
+		}
+		if(percentage < 0.75 && (float)((float)(i-start)/(end-start)) >= .75){
+			percentage = 0.75;
+			printf("Thread %d: random values: 75%\n", ti->ik);			
+		}
+		*/
 	}
-
+	//printf("Thread %d: finished assign of random values\n", ti->ik);
 	//Calculate the average value for the numbers
 	localSum = 0;
 	for(i=start; i<end; i++){
 		localSum += ti->vars[i];
 	}
-
+	localSum /= (long long int)(ti->alocNum/ti->K);	
 	//Sum to total;
-	localSum /= (long long int)(ti->alocNum/ti->K);
 	pthread_mutex_lock(&mtx);
 	average += localSum;
 	pthread_mutex_unlock(&mtx);
-
 	//exit
 	pthread_exit(NULL);
 }
@@ -55,7 +67,7 @@ int main(int argc, char **argv){
 	long long int alocNum;
 	int r, i;
 	int *vars;
-	ThreadInfo ti;
+	ThreadInfo *ti;
 
 	//Initialize thread mutex
 	pthread_mutex_init(&mtx, NULL);
@@ -73,14 +85,15 @@ int main(int argc, char **argv){
 	vars = (int *)malloc(alocNum * sizeof(int));
 
 	//Run threads
-	ti.vars = vars;
-	ti.K = K;
-	ti.alocNum = alocNum;
+	ti = (ThreadInfo *)malloc(K * sizeof(ThreadInfo));
 	for(int i = 0; i < K; i++) {
-		ti.ik = i;
+		ti[i].ik = i;
+		ti[i].vars = vars;
+		ti[i].K = K;
+		ti[i].alocNum = alocNum;
 		//printf("Generate %dth thread\n", i);
 		pthread_create(&threads[i], NULL,
-		GetAverage, (void *)&ti);
+		GetAverage, (void *)&ti[i]);
 	}
 
 	//Join threads
@@ -88,6 +101,8 @@ int main(int argc, char **argv){
 		pthread_join(threads[i], NULL);
 	}
 	
+	//printf("All threads joined\n");
+
 	//Divides from number of alocNum
 	average /= K;
 
