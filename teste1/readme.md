@@ -1,15 +1,15 @@
-8
-seq:     result = 500   time = 1.09 seconds
-thread:  result = 500   time = 12.73 seconds
-process: result = 500   time = 0.49 seconds
+#Teste 1
 
-4
-seq:     result = 500   time = 1.09 seconds
-thread:  result = 500   time = 12.40 seconds
-process: result = 500   time = 0.50 seconds
+##Proposta
 
-2
-seq:     result = 500   time = 1.11 seconds
-thread:  result = 500   time = 16.14 seconds
-process: result = 500   time = 0.57 seconds
+##Resultados
 
+Os resultados foram gerados para N = 64, assumindo valores variados para K:
+
+| K  | seq | thread  | process |
+| -- | --- | ------- | ------- |
+| 2  | 1.12s | 19.10s | 0.57s |
+| 4  | 1.09s | 12.51s | 0.49s |
+| 8  | 1.09s | 12.22s | 0.50s |
+
+##Discussão
