@@ -6,7 +6,7 @@
 #include <pthread.h>
 
 
-long long int average;
+int average;
 pthread_mutex_t mtx;
 
 typedef struct {
@@ -19,6 +19,8 @@ typedef struct {
 void *GetAverage(void *info){
 	long long int i, start, end, localSum;
 	ThreadInfo *ti = (ThreadInfo *)info;
+//	printf("Started thread %d\n", );
+
 	//Calculate start and end of array domain
 	start = (ti->alocNum/ti->K)*ti->ik;	
 	end = (ti->alocNum/ti->K)*(ti->ik+1);	
@@ -35,6 +37,7 @@ void *GetAverage(void *info){
 	}
 
 	//Sum to total;
+	localSum /= (long long int)(ti->alocNum/ti->K);
 	pthread_mutex_lock(&mtx);
 	average += localSum;
 	pthread_mutex_unlock(&mtx);
@@ -43,7 +46,7 @@ void *GetAverage(void *info){
 	pthread_exit(NULL);
 }
 
-int main(){
+int main(int argc, char **argv){
 	//Initialize random values
 	srand(time(NULL));
 
@@ -58,7 +61,9 @@ int main(){
 	pthread_mutex_init(&mtx, NULL);
 
 	//Get arguments
-	scanf(" %d %d", &N, &K);
+	//scanf(" %d %d", &N, &K);
+	N = atoi(argv[1]);
+	K = atoi(argv[2]);
 
 	//Create threads
 	pthread_t threads[K];
@@ -69,10 +74,11 @@ int main(){
 
 	//Run threads
 	ti.vars = vars;
+	ti.K = K;
+	ti.alocNum = alocNum;
 	for(int i = 0; i < K; i++) {
 		ti.ik = i;
-		ti.K = K;
-		ti.alocNum = alocNum;
+		//printf("Generate %dth thread\n", i);
 		pthread_create(&threads[i], NULL,
 		GetAverage, (void *)&ti);
 	}
@@ -83,10 +89,10 @@ int main(){
 	}
 	
 	//Divides from number of alocNum
-	average /= alocNum;
+	average /= K;
 
 	//Print results
-	printf("%lli\n", average);
+	printf("%lli", average);
 
 	//Unallocate vector of random values
 	free(vars);

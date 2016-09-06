@@ -9,7 +9,7 @@
 #include <sys/mman.h>
 #include <fcntl.h>
 
-int main(){
+int main(int argc, char **argv){
 	//Initialize random values
 	srand(time(NULL));
 
@@ -26,7 +26,9 @@ int main(){
 	}
 
 	//Get arguments
-	scanf(" %d %d", &N, &K);
+	//scanf(" %d %d", &N, &K);
+	N = atoi(argv[1]);
+	K = atoi(argv[2]);
 
 	//Calculate size and alocate vector of random values on shared space	
 	alocNum = N*(long)pow(2,exp);
@@ -104,7 +106,7 @@ int main(){
 	}
 
 	//Print results
-	printf("%d\n", *average/K);
+	printf("%d", *average/K);
 
 	//Unallocate vector of random values and shared memory
 	munmap(ptr, (alocNum+2)*(sizeof(int)));

@@ -6,7 +6,7 @@
 
 
 
-int main(){
+int main(int argc, char **argv){
 	//Initialize random values
 	srand(time(NULL));
 
@@ -16,7 +16,8 @@ int main(){
 	int r;
 
 	//Get arguments
-	scanf(" %d", &N);
+	//scanf(" %d", &N);
+	N = atoi(argv[1]);
 
 	//Calculate size and alocate vector of random values
 	alocNum = N*(long)pow(2,exp);
@@ -38,7 +39,7 @@ int main(){
 	average /= alocNum;
 
 	//Print results
-	printf("%lli\n", average);
+	printf("%lli", average);
 
 	//Unallocate vector of random values
 	free(vars);
