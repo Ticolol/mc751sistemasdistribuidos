@@ -82,11 +82,13 @@ int main(){
 		pthread_join(threads[i], NULL);
 	}
 	
-	
+	//Divides from number of alocNum
 	average /= alocNum;
 
-	printf("%lli %lli\n", alocNum, average);
+	//Print results
+	printf("%lli\n", average);
 
+	//Unallocate vector of random values
 	free(vars);
 
 	return 0;
