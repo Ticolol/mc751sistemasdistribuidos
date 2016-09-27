@@ -17,37 +17,44 @@ python gossip.py [N] [k]
 
 ##Resultados
 
-N=100 e k=2
+>```
+N=100  k=2 
 Processos alcancadas: 94/100
 Indice de fofocas bem sucedidas: 0.33098591549295775
-Minimo: 1; Maximo: 13; Media: 2
-
+Minimo: 1 Maximo: 13 Media: 2
+```
+```
 N=100 e k=8
 Processos alcancadas: 100/100
 Indice de fofocas bem sucedidas: 0.12239902080783353
 Minimo: 1; Maximo: 38; Media: 8
-
+```
+```
 N=250 e k=2
 Processos alcancadas: 235/250
 Indice de fofocas bem sucedidas: 0.32867132867132864
 Minimo: 1; Maximo: 13; Media: 2
-
+```
+```
 N=250 e k=8
 Processos alcancadas: 248/250
 Indice de fofocas bem sucedidas: 0.113345521023766
 Minimo: 1; Maximo: 41; Media: 8
-
+```
+```
 N=500 e k=2
 Processos alcancadas: 455/500
 Indice de fofocas bem sucedidas: 0.3551912568306011
 Minimo: 1; Maximo: 13; Media: 2
-
+```
+```
 N=500 e k=8
 Processos alcancadas: 482/500
 Indice de fofocas bem sucedidas: 0.10773357174787662
 Minimo: 1; Maximo: 61; Media: 8
-
+```
 
 ##Discussão
 
-Limite local: ~250
+
+Limite local: ~600
