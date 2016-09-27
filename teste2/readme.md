@@ -33,11 +33,19 @@ Indice de fofocas bem sucedidas: 0.32867132867132864
 Minimo: 1; Maximo: 13; Media: 2
 
 N=250 e k=8
-Processos alcancadas: 232/250
-Indice de fofocas bem sucedidas: 0.10866510538641687
-Minimo: 1; Maximo: 39; Media: 8
+Processos alcancadas: 248/250
+Indice de fofocas bem sucedidas: 0.113345521023766
+Minimo: 1; Maximo: 41; Media: 8
 
+N=500 e k=2
+Processos alcancadas: 455/500
+Indice de fofocas bem sucedidas: 0.3551912568306011
+Minimo: 1; Maximo: 13; Media: 2
 
+N=500 e k=8
+Processos alcancadas: 482/500
+Indice de fofocas bem sucedidas: 0.10773357174787662
+Minimo: 1; Maximo: 61; Media: 8
 
 
 ##Discussão
