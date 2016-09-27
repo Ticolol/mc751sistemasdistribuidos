@@ -87,7 +87,7 @@ if __name__=='__main__':
 	global globalMax
 	N = int(sys.argv[1])
 	k = int(sys.argv[2])
-	minPort = 31000
+	minPort = 32000
 	#Create N process
 	for x in range(0,N):
 		print('Created process number ' + `x`)
