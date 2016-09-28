@@ -13,7 +13,9 @@ Entre na pasta /teste2 e execute o seguinte comando:
 ```
 python gossip.py [N] [k]
 ```
-, sendo N o número de processos simultâneos e k o fator de disseminação
+, sendo N o número de processos simultâneos e k o fator de disseminação.
+
+Assim que o programa parar de fornecer novos outputs, pressione 'c' para receber os dados do experimento.
 
 ##Resultados
 
@@ -56,5 +58,5 @@ Minimo: 1; Maximo: 61; Media: 8
 
 ##Discussão
 
-
-Limite local: ~600
+Como o aumento no valor de k faz com que os processos de fofoca realizem mais tentativas de disseminação, foi possível comprovar que a informação nova alcança um número maior de processos na medida que k aumenta. Em contraparte, como os processos de fofoca tentaram realizar mais disseminações, o tempo de execução também aumenta de maneira proporcional ao k. Embora não tenha sido coletado nesta versão do experimento, captar o tempo de execução de maneira precisa ajudará a pontuar com dados o aumento do tempo de maneira proporcional ao valor de k. 
+Acabei esbarrando com um limite do uso de threads, mas não sei se este era atrelado ao SO ou à máquina. Inicialmente, uma execução com N = 300+ threads disparavam um erro de limite de arquivos abertos simultaneamente. Através do comando `ulimit`, foi possível dobrar o limite de arquivos simultaneamente abertos, fazendo o experimento funcionar com até N = 500 threads.
